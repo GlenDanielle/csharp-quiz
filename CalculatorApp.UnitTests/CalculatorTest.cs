@@ -15,12 +15,6 @@ public class CalculatorTest
         _calculator = new Calculator();
     }
 
-    // [Test]
-    // public void MethodUnderTest_Scenario_ExpectedBehavior()
-    // {
-    //     Assert.Pass();
-    // }
-
     //TEST CASES!!!!!!!!!!!!!!!!!!
 
     //TEST Cases with valid inputs
@@ -45,7 +39,66 @@ public class CalculatorTest
         //This is where you check if the method under test produces the correct results.
         // Assert
         Assert.That(result, Is.EqualTo(2));
+
+        //NOTE: USE "dotnet test" IF U PLAN ON USING VSCODE
+    }
+
+    [Test]
+    public void PerformOperation_Subtraction_ValidInput()
+    {
+        double num1 = 2;
+        double num2 = 2;
+        string operation = "-";
+
+        double result = _calculator.PerformOperation(num1, num2, operation);
+
+        Assert.That(result, Is.EqualTo(0));
+    }
+    
+    [Test]
+    public void PerformOperation_Multiplication_ValidInput()
+    {
+        double num1 = 1;
+        double num2 = 20;
+        string operation = "*";
+
+        double result = _calculator.PerformOperation(num1, num2, operation);
+
+        Assert.That(result, Is.EqualTo(20));
+    }
+
+    [Test]
+    public void PerformOperation_Division_ValidInput()
+    {
+        double num1 = 10;
+        double num2 = 10;
+        string operation = "/";
+
+        double result = _calculator.PerformOperation(num1, num2, operation);
+
+        Assert.That(result, Is.EqualTo(1));
     }
 
     //TEST Cases with invalid inputs
+
+    // [Test]
+    // public void PerformOperation_NullInput()
+    // {
+    //     double num1 = double.NaN;
+    //     double num2 = double.NaN;
+    //     string? operation = null;
+    // }
+
+    [Test]
+    public void PerformOperation_InvalidDataTypeInput()
+    {
+        var num1 = "abdul java ryze"; 
+        var num2 = "cheese sauce fries"; 
+        string operation = "+";
+
+        var ex = Assert.Throws<FormatException>(() => {
+            _calculator.PerformOperation(Convert.ToDouble(num1), Convert.ToDouble(num2), operation);
+        });
+        Assert.That(ex, Is.TypeOf<FormatException>());
+    }
 }
