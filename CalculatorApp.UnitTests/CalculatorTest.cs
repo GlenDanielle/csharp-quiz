@@ -81,14 +81,6 @@ public class CalculatorTest
 
     //TEST Cases with invalid inputs
 
-    // [Test]
-    // public void PerformOperation_NullInput()
-    // {
-    //     double num1 = double.NaN;
-    //     double num2 = double.NaN;
-    //     string? operation = null;
-    // }
-
     [Test]
     public void PerformOperation_InvalidDataTypeInput()
     {
@@ -101,4 +93,31 @@ public class CalculatorTest
         });
         Assert.That(ex, Is.TypeOf<FormatException>());
     }
+
+    [Test]
+    public void PerformOperation_DivisionByZero()
+    {
+        double num1 = 20;
+        double num2 = 0;
+        string operation = "/";
+
+        var ex = Assert.Throws<DivideByZeroException>(() => {
+            _calculator.PerformOperation(num1, num2, operation);
+        });
+        Assert.That(ex, Is.TypeOf<DivideByZeroException>());
+    }
+
+    [Test]
+    public void PerformOperation_InvalidOperation()
+    {
+        double num1 = 20;
+        double num2 = 1324;
+        string operation = "SOLID";
+
+        var ex = Assert.Throws<InvalidOperationException>(() => {
+            _calculator.PerformOperation(num1, num2, operation);
+        });
+        Assert.That(ex, Is.TypeOf<InvalidOperationException>());
+    }
+
 }
