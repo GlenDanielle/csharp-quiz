@@ -22,12 +22,6 @@ class Program
             {
                 throw new FormatException("Invalid input. Please enter a valid number.");
             }
-            // Console.WriteLine("Enter the first number:");
-            //  num1 = Convert.ToDouble(Console.ReadLine());
-
-            // Console.WriteLine("Enter the second number:");
-            //  num2 = Convert.ToDouble(Console.ReadLine());
-
             Console.WriteLine("Enter the operation (add, subtract, multiply, divide):");
             string operation = Console.ReadLine()?.ToLower() ?? string.Empty;
           

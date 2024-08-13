@@ -75,7 +75,8 @@ public class CalculatorTest
         var ex = Assert.Throws<FormatException>(() => {
             _calculator.PerformOperation(Convert.ToDouble(num1), Convert.ToDouble(num2), operation);
         });
-        Assert.That(ex.Message, Is.EqualTo("Invalid input. Please enter a valid number."));
+        Assert.That(ex.Message, Does.Contain($"The input string '{num1}' was not in a correct format.")
+                                    .Or.Contain($"The input string '{num2}' was not in a correct format."));
     }
 
     [TestCase(20, 0, "divide")]
